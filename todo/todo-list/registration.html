@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Регистрация</title>
+      <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+      <link rel="stylesheet" href="static/css/registration.css">
+    <link rel="stylesheet" href="static/css/index.css">
+  </head>
+
+  <body>
+    <div class="wrapper__registration">
+      <div class="registration__column_left">
+        <div class="registration__column_left_logo">
+
+        </div>
+      </div>
+      <div class="registration__column_right">
+        <div class="registration__column_right_form">
+          <div class="registration__column_right_form__header">
+            <div class="form__header_title_reg">Регистрация</div>
+            <div class="form__header_title_enter"><a href="/">Вход</a></div>
+          </div>
+          <form class="registration_form_class" action="#" id="registration_form" method="POST">
+            <p class="form_class_name-field"> Имя</p>
+             <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+            <p class="form_class_name-field">e-mail</p>
+             <input type="email" name="username" maxlength="150" autofocus="" required="" id="email">
+            <p class="form_class_name-field"> Пароль</p>
+            <input type="password" name="password1" required="" id="id_password1">
+            <p class="form_class_name-field">Подтверждение пароля</p>
+            <input type="password" name="password2" required="" id="id_password2">
+          </form>
+          <div class="registration__column_right__form_footer">
+            <label class="form_footer_button-submit">
+              <input type="submit" form="registration_form" value="" style="display: none">
+              <div id="reg_save" class="registration__button_submit"><span>Зарегистрироваться →</span></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

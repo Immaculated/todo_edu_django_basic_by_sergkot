@@ -1,315 +1,82 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'master.html' %}
 
+{% block title %}
     <title>Главная</title>
+{% endblock %}
 
-    <link rel="shortcut icon" type="image/png" href="imges/favicon.png"/>
-    <link rel="stylesheet" href="static/css/index.css">
-</head>
-<body>
-<div class='wrapper'>
-    <section class='wrapper__adress'>
-        <div class='adress__header'>
-            <div class='header__logo'>
-                <img src="static/images/lists-big.png" alt="exit" width="60px">
+{% block name_list %}
+    <div class="table-data_table-header-item-1">TO DO List</div>
+{% endblock %}
+
+{% block create %}
+    <a class="add_new_list" href="{% url 'main:create' %}">
+        <div class="header__button-create-bundle">+</div>
+    </a>
+{% endblock %}
+ {% block body %}
+    {% for row in lists %}
+        <div class="table-data__table-row">
+            <div class="table-row_table_cell-1">
+                {% if row.is_done %}
+                    <a href="{% url "item:item" pk=row.id %}"><li class="is_done_text">{{ row.name }}</li></a>
+                {% else %}
+                    <a href="{% url "item:item" pk=row.id %}"><li>{{ row.name }}</li></a>
+                {% endif %}
             </div>
-            <div class='header__user-profile'>
-                <div class='user-profile__icon-user'>
-                    <svg class='icon-user' width="18" height="18" viewBox="0 0 18 18" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M11.1473 11.8635V10.4316C11.4695 10.2719 12.3909 9.17513 12.4875 8.31816C12.7409 8.29882 13.1391 8.06614 13.2565 7.14759C13.3195 6.65431 13.0689 6.37725 12.917 6.28991C12.917 6.28991 13.2951 5.57182 13.2951 4.70482C13.2951 2.96651 12.6128 1.48309 11.1473 1.48309C11.1473 1.48309 10.6383 0.40918 8.99947 0.40918C5.96246 0.40918 4.70384 2.35725 4.70384 4.70482C4.70384 5.49521 5.08185 6.28991 5.08185 6.28991C4.93008 6.37725 4.6795 6.65503 4.7425 7.14759C4.85991 8.06614 5.25797 8.29882 5.51141 8.31816C5.60807 9.17513 6.52948 10.2719 6.85165 10.4316V11.8635C6.13571 14.0113 0.408203 12.5794 0.408203 17.591H17.5907C17.5907 12.5794 11.8632 14.0113 11.1473 11.8635Z"
-                              fill="#FF4646"/>
-                    </svg>
+            <div class="buttons">
+                <div class="table-data-two_table-icon">
+                    <a href='{% url 'main:edit' pk=row.id %}'>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z"
+                                  fill="#FF4646"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class='user-profile__user-name'>
-                    <span>Анонимный пользователь</span>
-                </div>
-                <a class="user-profile_exit-button" href="/logout"><img src=" static/images/exit.svg" alt="exit"></a>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="wrapper__relationship">
-
-        <div class="relationship__table-data">
-            <div class="table-data__table-header">
-                <div class="table-data_table-header-item-1">TO DO List</div>
-                <a class="add_new_list" href="/create/">
-                     <div class="header__button-create-bundle">+</div>
+                <a id="{{ row.id }}" class="delete_button" href="#">
+                    <div class="table-row_table_icon">
+                        <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z"
+                                  fill="#BBC1C7"/>
+                        </svg>
+                    </div>
                 </a>
-
             </div>
-                <div class="table-data__table-row">
-                    <div class="table-row_table_cell-1">
-                        <a href="#"><li>Список 1</li></a>
-                    </div>
-                    <div class="buttons">
-                        <div class="table-data-two_table-icon">
-                            <a href='#'>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z"
-                                          fill="#FF4646"/>
-                                </svg>
-                            </a>
-                        </div>
-                        <a class="delete_button" href="#">
-                            <div class="table-row_table_icon">
-                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z"
-                                          fill="#BBC1C7"/>
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="table-data__table-row">
-                    <div class="table-row_table_cell-1">
-                        <a href="#"><li>Список 2</li></a>
-                    </div>
-                    <div class="buttons">
-                        <div class="table-data-two_table-icon">
-                            <a href='#'>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z"
-                                          fill="#FF4646"/>
-                                </svg>
-                            </a>
-                        </div>
-                        <a class="delete_button" href="#">
-                            <div class="table-row_table_icon">
-                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z"
-                                          fill="#BBC1C7"/>
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            <div class="table-data__table-row">
-                    <div class="table-row_table_cell-1">
-                        <a href="#"><li>Список 3</li></a>
-                    </div>
-                    <div class="buttons">
-                        <div class="table-data-two_table-icon">
-                            <a href='#'>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z"
-                                          fill="#FF4646"/>
-                                </svg>
-                            </a>
-                        </div>
-                        <a class="delete_button" href="#">
-                            <div class="table-row_table_icon">
-                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z"
-                                          fill="#BBC1C7"/>
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            <div class="table-data__table-row">
-                    <div class="table-row_table_cell-1">
-                        <a href="#"><li>Список 4</li></a>
-                    </div>
-                    <div class="buttons">
-                        <div class="table-data-two_table-icon">
-                            <a href='#'>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z"
-                                          fill="#FF4646"/>
-                                </svg>
-                            </a>
-                        </div>
-                        <a class="delete_button" href="#">
-                            <div class="table-row_table_icon">
-                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z"
-                                          fill="#BBC1C7"/>
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            <div class="table-data__table-row">
-                <div class="table-row_table_cell-1">
-                     <a href="#"><li>Список 5</li></a> 
-                 </div> 
-                 <div class="buttons"> 
-                     <div class="table-data-two_table-icon"> 
-                         <a href='#'> 
-                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" 
-                                  xmlns="http://www.w3.org/2000/svg"> 
-                                 <path fill-rule="evenodd" clip-rule="evenodd" 
-                                       d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z" 
-                                       fill="#FF4646"/> 
-                             </svg> 
-                         </a> 
-                     </div> 
-                     <a class="delete_button" href="#"> 
-                         <div class="table-row_table_icon"> 
-                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none" 
-                                  xmlns="http://www.w3.org/2000/svg"> 
-                                 <path fill-rule="evenodd" clip-rule="evenodd" 
-                                       d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z" 
-                                       fill="#BBC1C7"/> 
-                             </svg> 
-                         </div> 
-                     </a> 
-                 </div> 
-             </div> 
-             <div class="table-data__table-row"> 
-                 <div class="table-row_table_cell-1"> 
-                     <a href="#"><li>День рождения</li></a> 
-                 </div> 
-                 <div class="buttons"> 
-                     <div class="table-data-two_table-icon"> 
-                         <a href='#'> 
-                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" 
-                                  xmlns="http://www.w3.org/2000/svg"> 
-                                 <path fill-rule="evenodd" clip-rule="evenodd" 
-                                       d="M20 18V11H18V18H2V2H9V0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H18C19.1046 20 20 19.1046 20 18ZM17.1781 0.723423C16.7197 0.26142 16.0921 0 15.4374 0C14.7834 0 14.1564 0.26083 13.6954 0.724628L5.3265 9.09342C4.57867 9.75233 4.08844 10.7328 4.00325 11.7873L4 15.0023V16.0023H8.1346C9.2689 15.9245 10.259 15.4295 10.9575 14.6238L19.279 6.30584C19.7407 5.84416 20.0001 5.21799 20.0001 4.56508C20.0001 3.91217 19.7407 3.286 19.279 2.82432L17.1781 0.723423ZM8.06398 14.0048C8.59821 13.967 9.09549 13.7184 9.49479 13.2616L15.5567 7.19972L12.8024 4.44527L6.6961 10.5496C6.29095 10.9079 6.04031 11.4092 6 11.8678V14.0029L8.06398 14.0048ZM14.2169 3.03128L16.9709 5.78551L17.8648 4.89162C17.9514 4.80502 18.0001 4.68756 18.0001 4.56508C18.0001 4.4426 17.9514 4.32514 17.8648 4.23854L15.7611 2.13486C15.6755 2.04855 15.5589 2 15.4374 2C15.3158 2 15.1992 2.04855 15.1136 2.13486L14.2169 3.03128Z" 
-                                       fill="#FF4646"/> 
-                             </svg> 
-                         </a> 
-                     </div> 
-                     <a class="delete_button" href="#"> 
-                         <div class="table-row_table_icon"> 
-                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none" 
-                                  xmlns="http://www.w3.org/2000/svg"> 
-                                 <path fill-rule="evenodd" clip-rule="evenodd" 
-                                       d="M6.99987 0H12.9999C14.1044 0 14.9999 0.89543 14.9999 2V3H18C19.1046 3 20 3.89543 20 5V7C20 8.10457 19.1046 9 18 9H17.9196L16.9997 20C16.9997 21.1046 16.1043 22 14.9997 22H4.99974C3.89517 22 2.99974 21.1046 3.00319 20.0831L2.07961 9H2C0.895431 9 0 8.10457 0 7V5C0 3.89543 0.895431 3 2 3H4.99987V2C4.99987 0.89543 5.8953 0 6.99987 0ZM4.99987 5V4.99999H1.99987V6.99999H17.9999V4.99999H14.9999V5H4.99987ZM4.99954 20L4.08603 9H15.9127L15.003 19.917L14.9995 20H4.99954ZM13.0001 1.99999V2.99999H7.00013V1.99999H13.0001Z" 
-                                       fill="#BBC1C7"/> 
-                             </svg> 
-                         </div> 
-                     </a> 
-                 </div> 
-             </div> 
-
         </div>
-    </section>
+    {% endfor %}
+{% endblock %}
 
-</div>
+{% block empty %}
+    {% for _ in lists|get_count %}
+        <div class="table-data__table-row">
+            <div class="table-row_table_cell-1"></div>
+        </div>
+    {% endfor %}
 
-</body>
+    {% if is_paginated %}
+        <div class="table-data__table-row">
+            <div class="paginator_class">
+                <ul class="pagination-wrapper_button">
+                    {% for page in paginator.page_range %}
+                        {% if page_obj.number == page %}
+                            <li><a class="active" href="{% url 'main:main' %}?page={{ page }}">{{ page }}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'main:main' %}?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
 
+{% block js %}
 <script>
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    var csrftoken = getCookie('csrftoken');
-    const delButton = document.querySelectorAll('.delete_button');
-
-    const delUrl = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        console.log(url);
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status).then(data => location.reload());
-    };
-
-    delButton.forEach(button => {
-        button.addEventListener('click', delUrl);
-    });
-
-    var scheduler = JSON.parse('{{scheduler_dict|safe}}');
-    console.log(scheduler);
-
-    var index;
-    for (index = 0; index < scheduler.length; ++index) {
-        var row = scheduler[index];
-        var check = document.getElementsByName(row.pk);
-        check.forEach((el) => {
-            el.checked = row.status;
-            el.addEventListener('change', (event) => {
-                inputCheck(event.target.checked, event.target.name)
-            });
-        });
-    }
-
-    const inputCheck = (check, id) => {
-        url = '/update/' + id;
-        return fetch(url,
-            {
-                method: 'PATCH',
-                headers: new Headers({
-                    'X-CSRFToken': csrftoken,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }),
-                redirect: 'follow',
-                body: JSON.stringify({'id': id, 'enabled': check})
-            }).then(response => response.status);
-    };
-
-    const loadAllFunc = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status);
-    };
-
-    const loadAllButton = document.querySelector('.load_all_items');
-    loadAllButton.addEventListener('click', loadAllFunc);
-
-    const loadUpdateFunc = (event) => {
-        event.preventDefault();
-        url = event.currentTarget.href;
-        return fetch(url,
-            {
-                method: 'POST',
-                headers: new Headers({'X-CSRFToken': csrftoken}),
-                redirect: 'follow'
-            }).then(response => response.status);
-    };
-
-    const loadUpdateButton = document.querySelector('.load_update_items');
-    loadUpdateButton.addEventListener('click', loadUpdateFunc);
-
+const successUrl = '{% url 'main:main' %}';
+const delUrl = '{% url "main:delete" %}';
 
 </script>
-
-</html>
+{% endblock %}

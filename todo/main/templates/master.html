@@ -1,0 +1,120 @@
+{% load get_count %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% block title %}
+
+    {% endblock %}
+
+    <link rel="shortcut icon" type="image/png" href="imges/favicon.png"/>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<div class='wrapper'>
+    <section class='wrapper__adress'>
+        <div class='adress__header'>
+            <div class='header__logo'>
+                <img src="/static/images/lists-big.png" alt="exit" width="60px">
+            </div>
+            <div class='header__user-profile'>
+                <div class='user-profile__icon-user'>
+                    <svg class='icon-user' width="18" height="18" viewBox="0 0 18 18" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M11.1473 11.8635V10.4316C11.4695 10.2719 12.3909 9.17513 12.4875 8.31816C12.7409 8.29882 13.1391 8.06614 13.2565 7.14759C13.3195 6.65431 13.0689 6.37725 12.917 6.28991C12.917 6.28991 13.2951 5.57182 13.2951 4.70482C13.2951 2.96651 12.6128 1.48309 11.1473 1.48309C11.1473 1.48309 10.6383 0.40918 8.99947 0.40918C5.96246 0.40918 4.70384 2.35725 4.70384 4.70482C4.70384 5.49521 5.08185 6.28991 5.08185 6.28991C4.93008 6.37725 4.6795 6.65503 4.7425 7.14759C4.85991 8.06614 5.25797 8.29882 5.51141 8.31816C5.60807 9.17513 6.52948 10.2719 6.85165 10.4316V11.8635C6.13571 14.0113 0.408203 12.5794 0.408203 17.591H17.5907C17.5907 12.5794 11.8632 14.0113 11.1473 11.8635Z"
+                              fill="#FF4646"/>
+                    </svg>
+                </div>
+                <div class='user-profile__user-name'>
+                    <span>{{ user_name }}</span>
+                </div>
+                <a class="user-profile_exit-button" href="/logout"><img src="/static/images/exit.svg" alt="exit"></a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="wrapper__relationship">
+
+        <div class="relationship__table-data">
+            <div class="table-data__table-header">
+
+                {% block name_list %}
+
+                {% endblock %}
+
+                {% block create %}
+
+                {% endblock %}
+            </div>
+        {% block body %}
+
+        {% endblock %}
+
+        {% block empty %}
+
+        {% endblock %}
+
+        </div>
+    </section>
+
+</div>
+
+</body>
+<script>
+const deleteButtons = document.querySelectorAll('.delete_button');
+const csrftoken = getCookie('csrftoken');
+
+deleteButtons.forEach(deleteButton => {
+        console.log('add handler');
+        deleteButton.addEventListener('click', deleteItem);
+    }
+);
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+function deleteItem(event) {
+    console.log('click')
+    event.preventDefault();
+    const id = event.currentTarget.id
+    return fetch(delUrl, {
+        method: 'POST',
+        headers: new Headers({'X-CSRFToken': csrftoken}),
+        redirect: 'follow',
+        body: JSON.stringify({id: id})
+    }).then(
+        response => {
+            if (response.status === 201) {
+                document.location.href = successUrl;
+            } else {
+                alert("Сервер недоступен");
+            }
+        }
+    )
+}
+
+</script>
+{% block js %}
+
+{% endblock %}
+</html>

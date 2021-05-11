@@ -1,0 +1,15 @@
+[run]
+omit =
+  *apps.py,
+  *migrations/*,
+  *fixtures/*,
+  *venv/*,
+  *static/*,
+  *settings*,
+  *tests/*,
+  *urls.py,
+  *wsgi/*,
+  manage.py
+  gunicorn_config.py
+  config.py
+  wsgi.py

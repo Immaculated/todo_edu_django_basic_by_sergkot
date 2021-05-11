@@ -1,0 +1,21 @@
+{% extends 'create_master.html' %}
+
+{% block header %}
+    <div class="auth__column_right_form__header">
+       Новый элемент списка
+    </div>
+{% endblock %}
+
+{% block form %}
+    <form class="auth_form_class" action="{% url 'item:create' pk %}" id="auth_form" method="POST">
+      {% csrf_token %}
+      {{ form.name }}
+      {{ form.expare_date }}
+    </form>
+{% endblock %}
+
+{% block cancel_form %}
+    <a href="{% url 'item:item' pk %}">
+        <div class="auth__button_submit" id="login-cancel-btn" ><span>&#9587</span></div>
+    </a>
+{% endblock %}

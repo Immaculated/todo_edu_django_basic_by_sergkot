@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/* Шрифты**/
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Bold.woff2") format("woff2"), url("../fonts/Inter/Inter-Bold.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Thin-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-Thin-BETA.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-ExtraLight-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-ExtraLight-BETA.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Medium.woff2") format("woff2"), url("../fonts/Inter/Inter-Medium.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-SemiBold.woff2") format("woff2"), url("../fonts/Inter/Inter-SemiBold.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-BlackItalic.woff2") format("woff2"), url("../fonts/Inter/Inter-BlackItalic.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Light-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-Light-BETA.woff") format("woff"); }
+
+body {
+  background: #BBC1C7; }
+
+.wrapper__registration {
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.registration__column_left {
+  width: 400px;
+  height: 600px;
+  float: left;
+  background-color: #004949; }
+
+.registration__column_right {
+  width: 600px;
+  height: 600px;
+  float: right;
+  background-color: #FFFFFF; }
+
+.registration__column_left_logo {
+  position: relative;
+  width: 250px;
+  height: 63px;
+  top: 620px;
+  margin-left: 260px; }
+
+.registration__column_right_form {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  align-items: center;
+  justify-content: center; }
+
+.registration__column_right_form__header {
+  align-self: center;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  justify-self: stretch;
+  margin-left: 70px; }
+
+.form__header_title_reg {
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 64px;
+  color: #48555F; }
+
+.form__header_title_enter {
+  margin-left: 150px;
+  height: 24px;
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 34px;
+  color: #0085FF; }
+  .form__header_title_enter a:link {
+    color: #0085FF; }
+  .form__header_title_enter a:visited {
+    color: #55acfd; }
+
+.registration_form_class {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: center; }
+
+.registration__column_right__form_footer {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  align-self: start;
+  justify-self: end; }
+
+.registration_form_class input {
+  width: 500px;
+  height: 50px;
+  padding-left: 24px;
+  border: 1px solid #BBC1C7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="text"]::-webkit-input-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="text"]::-moz-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="email"]::-webkit-input-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="email"]::-moz-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="password"]::-webkit-input-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.registration_form_class input[type="password"]::-moz-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.form_class_name-field {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 24px;
+  color: #48555F;
+  margin: 0px 0px 3px; }
+
+.registration_form_class_error {
+  opacity: 0;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 24px;
+  color: #48555F;
+  margin: 0px 0px; }
+
+.registration_form_class_error.active-error {
+  color: #FF4646;
+  opacity: 1; }
+
+.registration__button_submit {
+  text-align: center;
+  width: 328px;
+  height: 40px;
+  background: #004949;
+  border-radius: 6px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 34px;
+  color: #FFFFFF;
+  padding-top: 7px;
+  margin-top: 10px; }
+
+.form_footer_button-submit {
+  float: right;
+  margin-right: 97px; }
+
+.registration__privacy-policy {
+  float: right;
+  margin-right: 120px;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px; }
+  .registration__privacy-policy a:link {
+    color: #0085FF; }
+  .registration__privacy-policy a:visited {
+    color: #55acfd; }
+
+.registration__checkbox_submit {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #FF4646;
+  margin-right: 10px; }
+
+.registration__checkbox_submit:before {
+  content: '';
+  background-image: url("../images/test.svg");
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  transition: 0.3s;
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  border-radius: 6px; }
+
+#policy:checked + .registration__checkbox_submit:before {
+  opacity: 1; }

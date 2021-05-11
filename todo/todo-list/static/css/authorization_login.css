@@ -1,0 +1,211 @@
+@charset "UTF-8";
+/* Шрифты**/
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Bold.woff2") format("woff2"), url("../fonts/Inter/Inter-Bold.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Thin-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-Thin-BETA.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-ExtraLight-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-ExtraLight-BETA.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Medium.woff2") format("woff2"), url("../fonts/Inter/Inter-Medium.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-SemiBold.woff2") format("woff2"), url("../fonts/Inter/Inter-SemiBold.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-BlackItalic.woff2") format("woff2"), url("../fonts/Inter/Inter-BlackItalic.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/Inter/Inter-Light-BETA.woff2") format("woff2"), url("../fonts/Inter/Inter-Light-BETA.woff") format("woff"); }
+
+body {
+  background: #ffffff; }
+
+.wrapper__auth {
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.auth__column_left {
+  width: 400px;
+  height: 600px;
+  float: left;
+  background-color: #004949; }
+
+.auth__column_right {
+  width: 600px;
+  height: 400px;
+  float: right;
+  background-color: #FFFFFF; }
+
+.auth__column_left_logo {
+  position: relative;
+  width: 250px;
+  height: 63px;
+  top: 620px;
+  margin-left: 260px; }
+
+.auth__column_right_form {
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center; }
+
+.auth__column_right_form__header {
+  grid-column: 2/3;
+  grid-row: 1/2; }
+
+.form__header_title_enter {
+  float: left;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 64px;
+  color: #48555F; }
+
+.form__header_title_reg {
+  float: right;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 34px;
+  color: #0085FF;
+  margin-top: 25px;
+  margin-right: 98px; }
+  .form__header_title_reg a:link {
+    color: #0085FF; }
+  .form__header_title_reg a:visited {
+    color: #55acfd; }
+
+.auth_form_class {
+  grid-column: 2/3;
+  grid-row: 2/3; }
+
+.auth__column_right__form_footer {
+  grid-column: 2/3;
+  grid-row: 3/4; }
+
+.auth_form_class input {
+  width: 300px;
+  height: 40px;
+  padding-left: 30px;
+  border: 1px solid #BBC1C7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px; }
+
+.auth_form_class input[type="email"]::-webkit-input-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.auth_form_class input[type="email"]::-moz-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.auth_form_class input[type="password"]::-webkit-input-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.auth_form_class input[type="password"]::-moz-placeholder {
+  color: #BBC1C7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px; }
+
+.auth_form_class p {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 24px;
+  color: #004949; }
+
+.auth__button_submit {
+  text-align: center;
+  width: 168px;
+  height: 50px;
+  background: #004949;
+  border-radius: 6px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 34px;
+  color: #FFFFFF;
+  padding-top: 10px; }
+
+.auth__button_submit :hover {
+  cursor: pointer; }
+
+.form_footer_button-submit {
+  float: right;
+  margin-right: 97px; }
+
+.auth__password_recovery {
+  float: left;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px; }
+  .auth__password_recovery a:link {
+    color: #0085FF; }
+  .auth__password_recovery a:visited {
+    color: #55acfd; }

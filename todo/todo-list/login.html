@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Войти</title>
+
+      <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+
+      <link rel="stylesheet" href="static/css/authorization_login.css">
+  </head>
+
+  <body>
+    <div class="wrapper__auth">
+      <div class="auth__column_left">
+        <div class="auth__column_left_logo">
+
+        </div>
+      </div>
+      <div class="auth__column_right">
+        <div class="auth__column_right_form">
+          <div class="auth__column_right_form__header">
+            <div class="form__header_title_enter">Вход</div>
+            <div class="form__header_title_reg"><a id="registration_link" href="/registration">Регистрация</a></div>
+          </div>
+          <form class="auth_form_class" action="" id="auth_form" method="POST">
+            <p>Логин</p>
+              <input type="text" name="login" id="input_field_email-id" maxlength="128" required="">
+            <p>Пароль</p>
+              <input type="password" name="password" id="input_field_pass-id" maxlength="128" required="">
+          </form>
+          <div class="auth__column_right__form_footer">
+            <label class="form_footer_button-submit">
+              <input type="submit" form="auth_form" value="" style="display: none">
+              <div class="auth__button_submit" id="login-submit-btn" ><span>Войти →</span></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends 'create_master.html' %}
+
+{% block header %}
+    <div class="auth__column_right_form__header">
+       Новый список
+    </div>
+{% endblock %}
+
+{% block form %}
+    <form class="auth_form_class" action="{% url 'main:create' %}" id="auth_form" method="POST">
+      {% csrf_token %}
+      {{ form.name }}
+      {% if form.errors %}
+          {{ form.non_field_errors }}
+      {% endif %}
+    </form>
+{% endblock %}
+{% block cancel_form %}
+    <a href="{% url 'main:main' %}">
+        <div class="auth__button_submit" id="login-cancel-btn" ><span>&#9587</span></div>
+    </a>
+{% endblock %}
