@@ -5,7 +5,7 @@ deactivate
 # Linux / Mac
 source venv/bin/activate
 # Windows
-venv/Scripts/activate.bat
+venv\Scripts\activate.bat
 ```
 
 Документация  
@@ -98,7 +98,7 @@ https://postgrespro.ru/education/courses
 - Установка драйверов
 ```
 pip install psycopg2-binary
-pip install psycop2
+pip install psycopg2
 ```  
 
 - Прописать базу в settings.py
